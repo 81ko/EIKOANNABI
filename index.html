@@ -136,7 +136,8 @@
     padding:20px;transition:transform .25s, box-shadow .25s;
   }
   .hobby-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(19,42,68,.08);}
-  .hobby-card img{width:100%;height:90px;object-fit:cover;border-radius:10px;margin-bottom:14px;}
+  .hobby-card img{width:100%;height:90px;object-fit:cover;border-radius:12px;margin-bottom:14px;filter:saturate(.94) contrast(1.03);transition:transform .5s ease,filter .5s ease;}
+  .hobby-card:hover img{transform:scale(1.025);filter:saturate(1) contrast(1.05);}
   .hobby-card h4{font-size:15.5px;margin-bottom:5px;color:var(--navy);}
   .hobby-card p{font-size:13px;color:var(--muted);}
   .hobby-year{display:inline-block;margin-top:8px;font-size:11.5px;color:var(--gold);font-weight:600;}
@@ -289,13 +290,20 @@
   .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);gap:64px;}
   .hero-copy{max-width:690px;}
   .hero-photo{width:64px;height:64px;border-width:2px;margin-bottom:22px;}
-  .hero h1{font-size:clamp(58px,7vw,92px);letter-spacing:-.045em;line-height:.92;margin-bottom:24px;}
+  .hero h1{font-size:clamp(60px,7.2vw,96px);letter-spacing:.015em;line-height:.88;margin-bottom:24px;font-weight:700;}
+  .hero h1 span{display:block;}
+  .hero h1 .surname{letter-spacing:.075em;margin-top:.08em;}
   .hero p.role{font-size:19px;line-height:1.75;max-width:680px;}
-  .hero-visual{position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;}
-  .hero-visual img{width:100%;filter:drop-shadow(0 32px 48px rgba(0,0,0,.32));animation:float 7s ease-in-out infinite;}
-  .hero-metric{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);padding:14px 18px;border-radius:16px;color:#fff;box-shadow:0 18px 40px rgba(0,0,0,.2)}
-  .hero-metric b{display:block;font-size:22px;color:var(--gold-light)}.hero-metric small{font-size:11px;color:#d5dce8}.hm1{left:-12px;bottom:80px}.hm2{right:-8px;top:62px}
-  @keyframes float{50%{transform:translateY(-13px) rotate(.5deg)}}
+  .hero-visual{position:relative;min-height:500px;border-radius:30px;overflow:hidden;background:
+    linear-gradient(180deg,rgba(5,18,38,.03),rgba(5,18,38,.38)),
+    url('images/hero-world-map.webp') center/cover no-repeat;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 32px 80px rgba(0,0,0,.26);}
+  .hero-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 8%,rgba(136,191,255,.5),transparent 24%);mix-blend-mode:screen;pointer-events:none;}
+  .hero-visual::after{content:"JAPAN  ─────────  FRANCE";position:absolute;left:50%;bottom:32px;transform:translateX(-50%);white-space:nowrap;color:#fff;font-size:12px;font-weight:700;letter-spacing:.18em;text-shadow:0 2px 14px rgba(0,0,0,.7);}
+  .hero-metrics{position:absolute;right:24px;bottom:24px;display:grid;grid-template-columns:1fr 1fr;background:rgba(6,23,47,.72);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(16px);border-radius:20px;color:#fff;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+  .hero-metric{position:static;padding:18px 24px;min-width:145px;background:transparent;border:0;border-radius:0;box-shadow:none;}
+  .hero-metric+.hero-metric{border-left:1px solid rgba(255,255,255,.16)}
+  .hero-metric b{display:block;font-size:30px;line-height:1.1;color:var(--gold-light);margin-bottom:6px}.hero-metric small{font-size:11px;line-height:1.45;color:#d5dce8}
   .trust-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
   .trust-row span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#b8c4d5;font-weight:700}
   .section-title{font-size:clamp(38px,5vw,58px);letter-spacing:-.035em;line-height:1.05;}
@@ -308,16 +316,119 @@
   .skill-card{position:relative;overflow:hidden}.skill-card::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-48px;bottom:-55px;background:radial-gradient(circle,var(--sky),transparent 70%)}
   .narrative{background:linear-gradient(145deg,#07182d,#102e50);position:relative;overflow:hidden}.narrative::after{content:"JAPAN × FRANCE";position:absolute;right:-20px;bottom:-45px;font-size:110px;font-weight:800;letter-spacing:-.06em;color:rgba(255,255,255,.035);white-space:nowrap}
   .cta{position:relative;overflow:hidden}.cta::after{content:"";position:absolute;right:-110px;top:-110px;width:360px;height:360px;background:url('images/contact-orbit.svg') center/contain no-repeat;opacity:.26}
-  @media(max-width:900px){.hero{min-height:auto}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:390px;max-width:560px;margin:auto}.hm1{left:0}.hm2{right:0}}
-  @media(max-width:600px){section{padding:72px 0}.wrap{padding:0 20px}.hero{padding:72px 0}.hero h1{font-size:55px}.hero-visual{min-height:300px}.hero-metric{padding:10px 12px}.hm1{bottom:30px}.hm2{top:18px}.trust-row{gap:14px}.hobby-card img{height:180px}}
+  @media(max-width:900px){.hero{min-height:auto}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:390px;max-width:700px;width:100%;margin:auto}.hero-metrics{right:18px;bottom:18px}}
+  @media(max-width:600px){section{padding:72px 0}.wrap{padding:0 20px}.hero{padding:72px 0}.hero h1{font-size:55px}.hero-visual{min-height:330px}.hero-visual::after{font-size:9px;bottom:18px}.hero-metrics{left:14px;right:14px;bottom:44px}.hero-metric{padding:12px 14px;min-width:0}.hero-metric b{font-size:24px}.trust-row{gap:14px}.hobby-card img{height:180px}}
 
+
+  /* Hero rebuilt from the approved Japan–France visual */
+  body{padding-top:0;}
+  header{position:absolute;top:0;left:0;right:0;background:transparent;border-bottom:0;z-index:30;color:#fff;}
+  header nav{height:78px;}
+  .brand{display:flex;align-items:center;gap:14px;color:#fff;font-size:13px;letter-spacing:.07em;text-transform:uppercase;}
+  .brand strong{font-family:Georgia,"Times New Roman",serif;font-size:27px;font-weight:500;color:var(--gold-light);letter-spacing:-.05em;}
+  .brand span{font-weight:600;}
+  .navlinks a{color:rgba(255,255,255,.84);font-size:11px;letter-spacing:.035em;text-transform:uppercase;}
+  .navlinks a:hover{color:#fff;}
+  .lang-switch{border-color:rgba(255,255,255,.22);background:rgba(5,18,38,.28);}
+  .lang-btn{color:rgba(255,255,255,.68);}
+  .lang-btn.active{background:rgba(255,255,255,.14);color:#fff;}
+  .menu-btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);}
+  .menu-btn span{background:#fff;}
+
+  .hero{min-height:770px;padding:115px 0 92px;border-radius:70px 70px 0 0;background:
+    linear-gradient(90deg,rgba(3,13,28,.96) 0%,rgba(3,14,31,.83) 32%,rgba(4,17,37,.28) 65%,rgba(4,17,37,.16) 100%),
+    linear-gradient(180deg,rgba(4,14,30,.08) 55%,rgba(4,15,32,.68) 100%),
+    url('images/hero-world-map.webp') 64% center/cover no-repeat;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .hero::before{opacity:.25;mask-image:linear-gradient(to bottom,black,transparent 92%);}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 64% 18%,rgba(108,168,255,.28),transparent 20%);pointer-events:none;}
+  .hero-grid{display:block;position:relative;z-index:2;}
+  .hero-copy{max-width:520px;padding-bottom:112px;position:relative;z-index:2;}
+  .hero-photo{display:none;}
+  .hero-kicker{font-size:14px;letter-spacing:.11em;margin-bottom:12px;color:#d9b876;}
+  .hero h1{font-size:clamp(68px,7vw,104px);line-height:.77;letter-spacing:.015em;margin-bottom:30px;font-weight:500;text-shadow:0 5px 30px rgba(0,0,0,.3);}
+  .hero h1 .surname{letter-spacing:.075em;margin-top:.16em;}
+  .hero p.role{font-size:16px;line-height:1.55;max-width:455px;color:#f2f4f8;margin-bottom:24px;}
+  .badges{gap:12px;margin-bottom:0;}
+  .badge{display:inline-flex;align-items:center;min-height:54px;padding:10px 16px;border-radius:16px;background:rgba(5,22,47,.45);border-color:rgba(255,255,255,.24);backdrop-filter:blur(12px);font-size:12px;}
+  .contact-chips{display:none;}
+  .hero-visual{position:absolute;right:0;top:0;width:58%;height:100%;min-height:0;background:none;box-shadow:none;border-radius:0;overflow:visible;z-index:1;}
+  .hero-visual::before,.hero-visual::after{display:none;}
+  .hero-metrics{right:1.5%;bottom:115px;border-radius:18px;background:rgba(6,23,47,.67);}
+  .hero-metric{padding:18px 28px;min-width:155px;}
+  .hero-metric b{font-size:34px;font-weight:500;}
+  .hero-metric small{font-size:12px;}
+  .hero-partners{position:absolute;left:0;right:0;bottom:0;height:82px;background:rgba(7,25,49,.82);border-top:1px solid rgba(255,255,255,.08);z-index:4;backdrop-filter:blur(12px);}
+  .hero-partners .wrap{height:100%;display:flex;align-items:center;gap:46px;color:#fff;}
+  .hero-partners span:not(.partners-label){font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.94;}
+  .partners-label{font-size:12px;color:rgba(255,255,255,.68);padding-right:28px;border-right:1px solid rgba(255,255,255,.24);}
+
+  @media(max-width:900px){
+    header{position:absolute}.hero{min-height:780px;background-position:60% center}.hero-copy{max-width:480px}.hero-visual{width:100%}.hero-metrics{right:24px;bottom:110px}.hero-partners .wrap{gap:24px;flex-wrap:wrap}.partners-label{width:100%;border-right:0;padding-right:0;margin-bottom:-14px}.hero-partners{height:110px}.hero-copy{padding-bottom:160px}
+  }
+  @media(max-width:600px){
+    .hero{border-radius:34px 34px 0 0;padding:104px 0 120px;min-height:790px;background-position:62% center;background-size:auto 100%;}
+    .hero::after{background:linear-gradient(90deg,rgba(3,13,28,.95),rgba(3,13,28,.55));}
+    .hero h1{font-size:62px}.hero-copy{max-width:100%;padding-bottom:225px}.hero p.role{font-size:15px;max-width:350px}.badge{min-height:46px;padding:8px 12px}.hero-metrics{left:20px;right:20px;bottom:132px}.hero-metric{padding:13px 14px}.hero-metric b{font-size:27px}.hero-partners{height:116px}.hero-partners .wrap{gap:12px 20px;align-content:center}.hero-partners span:not(.partners-label){font-size:12px}.partners-label{font-size:10px}.brand span{display:none}
+  }
+
+
+/* Simple blue hero with portrait */
+.hero.simple-hero{
+  min-height:720px;
+  padding:140px 0 92px;
+  border-radius:0;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:#17395d;
+  background-image:linear-gradient(135deg,#102d4c 0%,#1a4168 58%,#244e78 100%);
+}
+.hero.simple-hero::before,
+.hero.simple-hero::after{display:none!important;content:none!important;}
+.simple-hero-inner{position:relative;z-index:1;max-width:1180px;width:100%;}
+.simple-hero-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:58px;align-items:center;}
+.simple-portrait-wrap{display:flex;justify-content:center;align-items:center;}
+.simple-portrait{
+  width:220px;height:220px;border-radius:50%;object-fit:cover;
+  border:4px solid #d8b56d;padding:5px;background:#eef1f5;
+  box-shadow:0 20px 55px rgba(0,0,0,.28);
+}
+.simple-hero-copy{min-width:0;}
+.simple-hero .hero-kicker{color:#e3bd6c;font-size:15px;letter-spacing:.17em;margin-bottom:22px;font-weight:700;}
+.simple-hero h1{font-size:clamp(58px,7vw,96px);line-height:.94;font-weight:500;letter-spacing:.025em;margin:0 0 22px;color:#fff;text-shadow:none;}
+.simple-hero h1 span{display:inline;}
+.simple-hero h1 .surname{letter-spacing:.055em;margin-left:.15em;}
+.simple-title{font-size:clamp(19px,2vw,28px);color:#e7c67e;margin:0 0 18px;font-weight:500;}
+.simple-hero p.role{max-width:820px;font-size:18px;line-height:1.75;color:#e7edf5;margin-bottom:27px;}
+.simple-hero .badges{margin-bottom:28px;}
+.simple-hero .badge{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22);color:#fff;backdrop-filter:none;}
+.simple-hero .contact-chips{max-width:920px;color:#d8e1ec;}
+.simple-companies{margin-top:40px;padding-top:26px;border-top:1px solid rgba(255,255,255,.18);display:flex;gap:42px;flex-wrap:wrap;color:#fff;text-transform:uppercase;font-size:15px;font-weight:700;letter-spacing:.08em;opacity:.82;}
+@media(max-width:850px){
+  .hero.simple-hero{min-height:auto;padding:122px 0 82px;}
+  .simple-hero-layout{grid-template-columns:1fr;gap:32px;text-align:center;}
+  .simple-portrait{width:170px;height:170px;}
+  .simple-hero h1{font-size:64px;}
+  .simple-hero h1 span{display:block;}
+  .simple-hero h1 .surname{margin-left:0;margin-top:.12em;}
+  .simple-hero p.role{margin-left:auto;margin-right:auto;font-size:16px;}
+  .simple-hero .badges,.simple-hero .contact-chips,.simple-companies{justify-content:center;}
+}
+@media(max-width:520px){
+  .simple-portrait{width:142px;height:142px;}
+  .simple-hero h1{font-size:52px;}
+  .simple-hero .hero-kicker{font-size:12px;letter-spacing:.12em;}
+  .simple-companies{gap:16px 22px;font-size:11px;}
+}
 </style>
 </head>
 <body>
 
 <header>
   <nav class="wrap">
-    <div class="brand">Eiko ANNABI</div>
+    <div class="brand"><strong>EA</strong><span>Eiko ANNABI</span></div>
     <div class="navlinks">
       <a href="#profil"><span data-i18n="nav_profil">Profil</span></a>
       <a href="#formation"><span data-i18n="nav_formation">Formation</span></a>
@@ -347,30 +458,30 @@
   </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <img class="hero-photo" src="images/profile.jpg" alt="Eiko ANNABI">
-      <div class="hero-kicker"><span data-i18n="hero_kicker">Transformation Digitale · IA · Stratégie</span></div>
-      <h1>Eiko ANNABI</h1>
-      <p class="role"><span data-i18n="hero_role">Consultante Senior en Transformation Digitale, IA &amp; Stratégie Technologique — experte du pont Japon × France, j'accompagne les entreprises dans leurs projets de digitalisation et d'innovation.</span></p>
-      <div class="badges">
-        <span class="badge"><span data-i18n="badge1">Opérationnelle immédiatement</span></span>
-        <span class="badge"><span data-i18n="badge2">Travail en autonomie</span></span>
-        <span class="badge"><span data-i18n="badge3">Accélération de la transformation digitale</span></span>
+<section class="hero simple-hero" id="top">
+  <div class="wrap simple-hero-inner">
+    <div class="simple-hero-layout">
+      <div class="simple-portrait-wrap">
+        <img class="simple-portrait" src="images/profile.jpg" alt="Portrait professionnel d’Eiko Annabi">
       </div>
-      <div class="contact-chips">
-        <span><span class="dot"></span><span data-i18n="contact1">Bordeaux, France</span></span>
-        <span><span class="dot"></span><span data-i18n="contact2">Freelance — clients japonais</span></span>
-        <span><span class="dot"></span><span data-i18n="contact3">Étudiante à INSEEC</span></span>
-        <span><span class="dot"></span><span data-i18n="contact4">Disponible sept. 2026 — Alternance / Stage</span></span>
+      <div class="simple-hero-copy">
+        <div class="hero-kicker"><span data-i18n="hero_kicker">Transformation Digitale · IA · Stratégie</span></div>
+        <h1><span>Eiko</span><span class="surname">ANNABI</span></h1>
+        <p class="simple-title">Digital Transformation Consultant</p>
+        <p class="role"><span data-i18n="hero_role">Consultante Senior en Transformation Digitale, IA &amp; Stratégie Technologique — experte du pont Japon × France, j'accompagne les entreprises dans leurs projets de digitalisation et d'innovation.</span></p>
+        <div class="badges">
+          <span class="badge"><span data-i18n="badge1">Opérationnelle immédiatement</span></span>
+          <span class="badge"><span data-i18n="badge2">Travail en autonomie</span></span>
+          <span class="badge"><span data-i18n="badge3">Accélération de la transformation digitale</span></span>
+        </div>
+        <div class="contact-chips">
+          <span><span class="dot"></span><span data-i18n="contact1">Bordeaux, France</span></span>
+          <span><span class="dot"></span><span data-i18n="contact2">Freelance — clients japonais</span></span>
+          <span><span class="dot"></span><span data-i18n="contact3">Étudiante à INSEEC</span></span>
+          <span><span class="dot"></span><span data-i18n="contact4">Disponible sept. 2026 — Alternance / Stage</span></span>
+        </div>
+        <div class="simple-companies"><span>PwC</span><span>Autodesk</span><span>AVEVA</span><span>Obayashi</span></div>
       </div>
-      <div class="trust-row"><span>PwC</span><span>Autodesk</span><span>AVEVA</span><span>Obayashi</span></div>
-    </div>
-    <div class="hero-visual" aria-hidden="true">
-      <img src="images/hero-transformation.svg" alt="">
-      <div class="hero-metric hm1"><b>50+</b><small>Companies supported</small></div>
-      <div class="hero-metric hm2"><b>10+ yrs</b><small>Global experience</small></div>
     </div>
   </div>
 </section>
@@ -396,34 +507,34 @@
         <span class="hobby-year"><span data-i18n="depuis30ans">Depuis 30 ans</span></span>
       </div>
       <div class="hobby-card reveal">
-        <img src="images/hobby-team.svg" alt="Teamwork illustration">
+        <img src="images/hobby-basketball.webp" alt="Basketball in an indoor court">
         <h4><span data-i18n="h4_basketball">Basketball</span></h4>
         <p><span data-i18n="hobby_basket_desc">Esprit d'équipe orienté performance et résultats collectifs</span></p>
         <span class="hobby-year"><span data-i18n="depuis30ans">Depuis 30 ans</span></span>
       </div>
       <div class="hobby-card reveal">
-        <img src="images/hobby-cello.svg" alt="Cello illustration">
+        <img src="images/hobby-cello.webp" alt="Cello performance in warm stage lighting">
         <h4><span data-i18n="h4_violoncelle">Violoncelle</span></h4>
         <p><span data-i18n="hobby_violon_desc">Rigueur et précision technique</span></p>
         <span class="hobby-year"><span data-i18n="depuis30ans">Depuis 30 ans</span></span>
       </div>
       <div class="hobby-card reveal">
-        <img src="images/hobby-architecture.svg" alt="Architecture illustration">
+        <img src="images/hobby-architecture.webp" alt="Historic architecture in Bordeaux">
         <h4><span data-i18n="h4_archi">Visites architecturales</span></h4>
         <p><span data-i18n="hobby_archi_desc">Créativité nourrie par des pratiques artistiques</span></p>
       </div>
       <div class="hobby-card reveal">
-        <img src="images/hobby-reading.svg" alt="Reading illustration">
+        <img src="images/hobby-reading.webp" alt="Open book in a calm reading space">
         <h4><span data-i18n="h4_lecture">Lecture</span></h4>
         <p><span data-i18n="hobby_lecture_desc">Plus de 10 livres lus par mois</span></p>
       </div>
       <div class="hobby-card reveal">
-        <img src="images/hobby-walk.svg" alt="Walking with a dog illustration">
+        <img src="images/hobby-walk-bordeaux.webp" alt="Evening walk along the Bordeaux riverfront">
         <h4><span data-i18n="h4_promenades">Promenades</span></h4>
         <p><span data-i18n="hobby_promenade_desc">2 heures par jour avec mon chien — favorise la création rapide de liens sociaux dans de nouveaux environnements</span></p>
       </div>
       <div class="hobby-card reveal">
-        <img src="images/hobby-dialogue.svg" alt="Dialogue illustration">
+        <img src="images/hobby-counseling.webp" alt="Warm and private counseling room">
         <h4><span data-i18n="h4_psycho">Psychologique (privé)</span></h4>
         <p><span data-i18n="hobby_psycho_desc">Face au stress, je dialogue avec moi-même et explique les choses simplement à mon interlocuteur. Je détiens une certification privée de conseillère en psychologie (counseling).</span></p>
       </div>
@@ -729,7 +840,7 @@
         <span class="case-num">01</span>
         <span class="tag"><span data-i18n="tag_consultanteindep">Consultante indépendante</span></span>
         <h4><span data-i18n="h4_case1">Agence immobilière</span></h4>
-        <div class="case-img"><img src="images/case-realestate.svg" alt="AI real estate dashboard"></div>
+        <div class="case-img"><img src="images/case-realestate.webp" alt="現代的な不動産会社の建物"></div>
         <ul>
           <li><span data-i18n="li_case1_a">Étude et accompagnement de l'implémentation d'outils IA</span></li>
           <li><span data-i18n="li_case1_b">Recueil des besoins, rédaction du cahier des charges</span></li>
@@ -745,7 +856,7 @@
         <span class="case-num">02</span>
         <span class="tag"><span data-i18n="tag_consultanteindep">Consultante indépendante</span></span>
         <h4><span data-i18n="h4_case2">Start-up — suivi de l'eczéma de l'enfant</span></h4>
-        <div class="case-img"><img src="images/case-health.svg" alt="Digital health application"></div>
+        <div class="case-img"><img src="images/case-health.webp" alt="小児湿疹トラッキングアプリをスマートフォンで確認する母親"></div>
         <ul>
           <li><span data-i18n="li_case2_a">Développement d'une application web de suivi via réseaux sociaux</span></li>
           <li><span data-i18n="li_case2_b">Analyse des besoins en méthodologie agile</span></li>
@@ -774,7 +885,7 @@
         <span class="case-num">04</span>
         <span class="tag"><span data-i18n="tag_consultanteindep">Consultante indépendante</span></span>
         <h4><span data-i18n="h4_case4">Compagnie d'électricité</span></h4>
-        <div class="case-img"><img src="images/case-energy.svg" alt="Industrial energy system"></div>
+        <div class="case-img"><img src="images/case-energy.webp" alt="電力会社向けのデータダッシュボード"></div>
         <ul>
           <li><span data-i18n="li_case4_a">Accompagnement à l'implémentation d'un système MES (Manufacturing Execution System)</span></li>
           <li><span data-i18n="li_case4_b">Recueil des besoins et définition des exigences</span></li>
@@ -787,7 +898,7 @@
         <span class="case-num">05</span>
         <span class="tag"><span data-i18n="tag_consultanteindep">Consultante indépendante</span></span>
         <h4><span data-i18n="h4_case5">Éditeur d'outils pour le secteur de la construction</span></h4>
-        <div class="case-img"><img src="images/case-construction.svg" alt="Construction AI research"></div>
+        <div class="case-img"><img src="images/case-construction.webp" alt="建設現場のクレーン配置シミュレーション図"></div>
         <ul>
           <li><span data-i18n="li_case5_a">Étude sur l'adoption de l'IA dans le secteur de la construction, marché français inclus</span></li>
           <li><span data-i18n="li_case5_pm">Pilotage de projet : coordination entre les différents prestataires et gestion du planning des opérations</span></li>
@@ -802,7 +913,7 @@
         <span class="case-num">06</span>
         <span class="tag"><span data-i18n="tag_obayashikk">Obayashi Corporation</span></span>
         <h4><span data-i18n="h4_case6">Application de prise de notes interne — E-YACHO</span></h4>
-        <div class="case-img"><img src="images/case-eyacho.svg" alt="Digital field note application"></div>
+        <div class="case-img"><img src="images/case-eyacho.webp" alt="建設現場でE-YACHOをiPad操作する担当者"></div>
         <ul>
           <li><span data-i18n="li_case6_a">Création d'un système interne de prise de notes — application <a href="https://product.metamoji.com/gemba/eyacho/" target="_blank" rel="noopener">E-YACHO</a></span></li>
           <li><span data-i18n="li_case6_b">Participation dès la phase de conception, avec les membres de l'équipe</span></li>
