@@ -13,3 +13,6 @@
 
 ## Deploy to Vercel
 Upload all files to the root of a GitHub repository, import it in Vercel, select **Other** as the framework, and deploy.
+
+## Latest update
+Profile introduction copy updated in French, English and Japanese.
