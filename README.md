@@ -1,7 +1,6 @@
-# Portfolio Navigation Update
+# Eiko Annabi Portfolio
 
-Requested section order:
-
+## Section order
 1. Hero
 2. Profil
 3. Expérience professionnelle
@@ -12,4 +11,5 @@ Requested section order:
 8. Loisirs
 9. Contact
 
-Update your navigation links and section order accordingly.
+## Deploy to Vercel
+Upload all files to the root of a GitHub repository, import it in Vercel, select **Other** as the framework, and deploy.
